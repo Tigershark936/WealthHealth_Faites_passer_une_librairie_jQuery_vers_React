@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import EmployeeForm from "../components/EmployeeForm.jsx"
 import Modal from "../components/Modal.jsx"
 
-const Home = () => {
+const CreateEmployee = () => {
     return (
         <div>
             <div className="title">
@@ -24,4 +24,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default CreateEmployee
