@@ -6,7 +6,7 @@ const AddressForm = ({ form = {}, errors = {}, onChange = () => {} }) => {
       <legend>Address</legend>
 
       {/* Rue */}
-      <div>
+      <div className="form-field">
         <label htmlFor="street">Street</label>
         <input 
           id="street" 
@@ -15,11 +15,11 @@ const AddressForm = ({ form = {}, errors = {}, onChange = () => {} }) => {
           onChange={onChange} 
           required 
         />
-        {errors.street && <div style={{ color:'crimson' }}>{errors.street}</div>}
+        {errors.street && <div className="form-error">{errors.street}</div>}
       </div>
 
       {/* Ville */}
-      <div>
+      <div className="form-field">
         <label htmlFor="city">City</label>
         <input 
           type="text"
@@ -28,11 +28,11 @@ const AddressForm = ({ form = {}, errors = {}, onChange = () => {} }) => {
           value={form.city}
           onChange={onChange}
         />
-        {errors.city && <div style={{ color:'crimson' }}>{errors.city}</div>}
+        {errors.city && <div className="form-error">{errors.city}</div>}
       </div>
 
       {/* État US */}
-      <div>
+      <div className="form-field">
         <label htmlFor="state">State</label>
         <select 
           name="state" 
@@ -46,11 +46,11 @@ const AddressForm = ({ form = {}, errors = {}, onChange = () => {} }) => {
             <option key={name} value={name}>{name}</option>
           ))}
         </select>
-        {errors.state && <div style={{ color:'crimson' }}>{errors.state}</div>}
+        {errors.state && <div className="form-error">{errors.state}</div>}
       </div>
 
       {/* Code postal */}
-      <div>
+      <div className="form-field">
         <label htmlFor="zip-code">Zip Code</label>
         <input 
           type="number"
@@ -62,7 +62,7 @@ const AddressForm = ({ form = {}, errors = {}, onChange = () => {} }) => {
           pattern="[0-9]*"
           required
         />
-        {errors.zipCode && <div style={{ color:'crimson' }}>{errors.zipCode}</div>}
+        {errors.zipCode && <div className="form-error">{errors.zipCode}</div>}
       </div>
     </fieldset>
   )

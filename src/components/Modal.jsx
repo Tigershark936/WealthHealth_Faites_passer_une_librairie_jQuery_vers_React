@@ -1,22 +1,27 @@
 
 
-const Modal = ({ open, onClose, title = 'Dialog', children }) => {
-  if (!open) return null  // ← si pas ouverte, on ne rend rien
+const Modal = ({ open, onClose, title = "Dialog", children, okLabel = "OK" }) => {
+  if (!open) return null; 
 
   return (
-    <div role="dialog" aria-modal="true" aria-label={title}>
-      <div>
-        {/* En-tête : titre + bouton ✕ */}
-        <div>
-          <strong>{title}</strong>
-          <button onClick={onClose} aria-label="Close">✕</button>
+    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-label={title}>
+      <div className="modal">
+        <div className="modal-header">
+            {/* En-tête : titre + bouton ✕ */}
+            <strong className="modal-title">{title}</strong>
+            <button className="modal-close" onClick={onClose} aria-label="Close">✕</button>
         </div>
 
         {/* Contenu fourni par le parent */}
-        <div>{children}</div>
+        <div className="modal-body">{children}</div>
+
+        {/* Bouton OK */}
+        <div className="modal-actions">
+          <button className="btn-primary" onClick={onClose}>{okLabel}</button>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

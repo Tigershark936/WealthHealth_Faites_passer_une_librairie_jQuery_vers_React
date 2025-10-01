@@ -45,7 +45,7 @@ const EmployeeList = () => {
             )}
         
             <div>
-                <Link to="/">Home</Link>
+                <Link className="home-link" to="/">Home</Link>
             </div>
         </div>
     )

@@ -66,33 +66,52 @@ const CreateEmployee = () => {
     }
 
     return (
-        <div>
-            <div className="title">
-                <h1>HRnet</h1>
-            </div>
+        <div
+            className="auth-layout"
+            style={{
+                "--panel-bg-image": "url('public/Logo-WealthHealth.jpg')",
+            }}
+        >
+            {/* PARTI DE GAUCHE DU FORMULARY */}
+            <aside className="auth-panel">
+                <div className="brand">
+                    <h2 style={{margin:0}}>Wealth Health</h2>
+                    <p style={{margin:"6px 0 0", opacity:.70}}>
+                        Manage your employees with confidence.
+                    </p>
+                </div>
+            </aside>
 
-            <div className="container">
-                {/* Lien vers la liste */}
-                <Link to="/employee-list">View Current Employees</Link>
+            {/* PARTI DE DROITE DU FORMULARY */}
+            <section className="form-card">
+                <div className="header">
+                    <h1>Create employee</h1>
 
-                <h2>Create Employee</h2>
+                    {/* Lien vers la liste */}
+                    <Link className="link-secondary" to="/employee-list">
+                        View current employees
+                    </Link>
+                </div>
+
+                <p className="sub">
+                Fill out this form so we can verify and save your profile.
+                </p>
 
                 {/* Formulaire */}
-                <EmployeeForm 
-                    form={form}
-                    errors={errors}
-                    onChange={handleFieldChange}
-                    onSubmit={handleSubmit}
+                <EmployeeForm
+                form={form}
+                errors={errors}
+                onChange={handleFieldChange}
+                onSubmit={handleSubmit}
                 />
-                
+
                 {/* Modale de confirmation (s'affiche si isModalOpen === true) */}
                 <Modal
-                    open={isModalOpen}
-                    title="Employee Created!"
-                    onClose={() => setIsModalOpen(false)}
+                open={isModalOpen}
+                title="Employee Created!"
+                onClose={() => setIsModalOpen(false)}
                 />
-            </div>
-
+            </section>
         </div>
     )
 }

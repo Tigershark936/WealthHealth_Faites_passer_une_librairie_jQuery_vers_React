@@ -1,11 +1,19 @@
 import AddressForm from "./AddressForm.jsx"
 
-const EmployeeForm = ({ form, errors, onChange, onSubmit }) => {
+const DEPARTMENTS = [
+  "Sales",
+  "Marketing",
+  "Engineering",
+  "Human Resources",
+  "Legal",
+];
+
+const EmployeeForm = ({ form = {}, errors = {}, onChange = () => {}, onSubmit = () => {} }) => {
   return (
-    <form id="create-employee" onSubmit={onSubmit}>
+    <form className="form-grid" id="create-employee" onSubmit={onSubmit} noValidate>
 
       {/* First Name */}
-      <div>
+      <div className="form-field">
         <label htmlFor="first-name">First Name</label>
         <input 
           type="text" 
@@ -15,11 +23,11 @@ const EmployeeForm = ({ form, errors, onChange, onSubmit }) => {
           onChange={onChange}
           required
         />
-        {errors.firstName && <div style={{ color:'crimson' }}>{errors.firstName}</div>}
+        {errors.firstName && <div className="form-error">{errors.firstName}</div>}
       </div>
 
       {/* Last Name */}
-      <div>
+      <div className="form-field">
         <label htmlFor="last-name">Last Name</label>
         <input 
           type="text"
@@ -29,11 +37,11 @@ const EmployeeForm = ({ form, errors, onChange, onSubmit }) => {
           onChange={onChange}
           required
         />
-        {errors.lastName && <div style={{ color:'crimson' }}>{errors.lastName}</div>}
+        {errors.lastName && <div className="form-error">{errors.lastName}</div>}
       </div>
 
       {/* Dates Of Birth */}
-      <div>
+      <div className="form-field">
         <label htmlFor="date-of-birth">Date of Birth</label>
         <input
           type="date"
@@ -43,19 +51,22 @@ const EmployeeForm = ({ form, errors, onChange, onSubmit }) => {
           onChange={onChange} 
           required
         />
-        {errors.dateOfBirth && <div style={{ color:'crimson' }}>{errors.dateOfBirth}</div>}
+        {errors.dateOfBirth && <div className="form-error">{errors.dateOfBirth}</div>}
       </div>
 
       {/* Start Date */}
-      <label htmlFor="start-date">Start Date</label>
-      <input 
-        type="date"
-        id="start-date"
-        name="startDate"
-        value={form.startDate}
-        onChange={onChange}
-        required 
-      />
+      <div className="form-field">
+        <label htmlFor="start-date">Start Date</label>
+        <input 
+          type="date"
+          id="start-date"
+          name="startDate"
+          value={form.startDate}
+          onChange={onChange}
+          required 
+        />
+        {errors.startDate && <div className="form-error">{errors.startDate}</div>}
+      </div>
 
       <AddressForm
         form={form}
@@ -64,23 +75,25 @@ const EmployeeForm = ({ form, errors, onChange, onSubmit }) => {
       />
 
       {/* Department */}
-      <label htmlFor="department">Department</label>
-      <select 
-        name="department" 
-        id="department" 
-        value={form.department}
-        onChange={onChange} 
-        required
-      >
-        <option>Sales</option>
-        <option>Marketing</option>
-        <option>Engineering</option>
-        <option>Human Resources</option>
-        <option>Legal</option>
-      </select>
+      <div className="form-field">
+        <label htmlFor="department">Department</label>
+        <select 
+          name="department" 
+          id="department" 
+          value={form.department}
+          onChange={onChange} 
+          required
+        >
+          {DEPARTMENTS.map((d) => (
+            <option key={d} value={d}>{d}</option>
+          ))}
+        </select>
+      </div>
 
       {/* Button Formulary */}
-      <button type="submit">Save</button>
+      <div className="form-actions">
+        <button className="btn-primary" type="submit">Save</button>
+      </div>
     </form>
   )
 }
