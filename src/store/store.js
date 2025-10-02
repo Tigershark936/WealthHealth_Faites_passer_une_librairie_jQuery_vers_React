@@ -37,3 +37,19 @@ export const store = configureStore({
 
 // Le persistor qui va piloter la synchro du store vers le localStorage (<PersistGate>)
 export const persistor = persistStore(store)
+
+
+// Log pour mon redux sans utiliser mon outil redux du nav
+store.subscribe(() => {
+  const state = store.getState()
+  console.log("Redux-persist State :", state)
+
+  // Slice employees
+  console.log("Employees :", state.employees)
+
+  // Dernier employé ajouté dans le tableau
+  const lastEmployee = state.employees.items[state.employees.items.length - 1]
+  if (lastEmployee) {
+    console.log("dernier employé -> ID :", lastEmployee.id)
+  }
+})
