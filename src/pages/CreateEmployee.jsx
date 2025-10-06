@@ -7,7 +7,7 @@ import { addEmployee } from "../features/employees/employeesSlice.js"
 
 // Champs obligatoires pour mon validateForm
 const REQUIRED_FIELDS = [
-  'firstName','lastName','dateOfBirth','startDate', 'street','city','state','zipCode',
+  'firstName','lastName','dateOfBirth','startDate', 'street','city','state','zipCode', "department",
 ]
 
 const CreateEmployee = () => {
@@ -19,11 +19,11 @@ const CreateEmployee = () => {
         lastName: '',
         dateOfBirth: '',
         startDate: '',
-        department: 'Sales',
         street: '',
         city: '',
         state: '',
         zipCode: '',
+        department: '',
     })
 
     // Etat des erreurs sur les inputs (ex: { firstName: 'Required' })

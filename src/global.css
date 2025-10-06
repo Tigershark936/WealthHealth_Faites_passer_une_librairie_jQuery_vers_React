@@ -8,7 +8,9 @@
   --color-border: #e0e0e0;       /* gris clair */
 }
 
+/* ================== CSS GLOBALE ================== */
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial, "Noto Sans";
@@ -27,7 +29,7 @@ body {
   border: 1px solid var(--color-border);
 }
 
-/* Partie de gauche du formulary – dégradé vert + logo watermark */
+/* ================== PANNEAU GAUCHE (dégradé vert + logo watermark) ================== */
 .auth-panel {
   width: 40%;
   min-height: 640px;
@@ -63,6 +65,7 @@ body {
   pointer-events: none;
 }
 
+/* ================== FORMULARY DROIT ================== */
 .auth-panel .brand {
   position: relative;
   z-index: 1;
@@ -73,7 +76,6 @@ body {
   opacity: .95;
 }
 
-/* Partie de droite du formulary */
 .form-card {
   width: 60%;
   background: #fff;
@@ -81,6 +83,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow: visible;
 }
 
 .form-card .header {
@@ -101,7 +104,7 @@ body {
   font-size: 14px;
 }
 
-/* Bouton primaire */
+/* ================== BOUTON ================== */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -119,7 +122,7 @@ body {
 .btn-primary:hover { background: var(--color-primary-600); }
 .btn-primary:active { transform: translateY(1px); }
 
-/* Lien EmployeeList */
+/* ================== LIEN EMPLOYEELIST ================== */
 .link-secondary {
   color: var(--color-secondary);
   text-decoration: none;
@@ -127,14 +130,14 @@ body {
 }
 .link-secondary:hover { text-decoration: underline; }
 
-/* Grille du formulaire (2 colonnes en desktop) */
+/* ================== GRILLE DU FORMULAIRE (2 colonnes en desktop) ================== */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px 18px;
 }
 
-/* Champs & labels */
+/* ================== INPUTS ================== */
 .form-field label {
   display: block;
   margin-bottom: 6px;
@@ -166,13 +169,14 @@ body {
   box-shadow: 0 0 0 3px rgba(147,173,24,.28);
 }
 
+/* ================== MESSAGE D'ERREUR ================== */
 .form-error {
   color: #dc143c;
   font-size: 12px;
   margin-top: 6px;
 }
 
-/* Fieldset adresse */
+/* ================== FIELDSET ADRESSE ================== */
 .address {
   grid-column: 1 / -1;
   margin-top: 4px;
@@ -189,7 +193,7 @@ body {
 }
 .address > div { margin-bottom: 12px; }
 
-/* Footer du formulaire */
+/* ================== FORMULARY FOOTER ================== */
 .form-actions {
   grid-column: 1 / -1;
   display: flex;
@@ -263,7 +267,7 @@ body {
   background: #f6f8f2;
 }
 
-/* ====== MODAL ====== */
+/* ================== MODAL ================== */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -424,4 +428,103 @@ body {
 /* le calendrier au-dessus de tout */
 .react-datepicker-popper {
   z-index: 2000;
+}
+
+/* ================== REACT SELECT ====== AddressForm.jsx & EmployeeForm.jsx (Department) ================== */
+.form-field .react-select__control {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  min-height: 38px;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: none;
+}
+
+/* Quand le input est focus */
+.form-field .react-select__control--is-focused {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(147,173,24, 0.28);
+}
+
+/* Quand on survole la souris sur le input */
+.form-field .react-select__control:hover {
+  border-color: var(--color-primary-600);
+}
+
+/* ================== MENU DÉROULANT ================== */
+.form-field .react-select__menu {
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(147,173,24, 0.28);
+  z-index: 2000;
+  background: #fff;
+}
+
+/* la LISTE interne */
+.form-field .react-select__menu-list {
+  max-height: 230px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) #f0f0f0;
+}
+
+/* ====== COULEUR DU BOUTON X (isClearable) ====== */
+.form-field .react-select__clear-indicator {
+  color: crimson !important;
+  transition: color 0.2s;
+}
+
+/* Quand on survole X */
+.form-field .react-select__clear-indicator:hover {
+  color: #a4001f !important;
+}
+
+
+/* Scroll personnalisé pour Chrome, Edge, etc. */
+.form-field .react-select__menu-list::-webkit-scrollbar {
+  width: 6px;
+}
+.form-field .react-select__menu-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 6px;
+}
+.form-field .react-select__menu-list::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+/* Option survolée */
+.form-field .react-select__option--is-focused {
+  background-color: rgba(147,173,24, 0.15) !important;
+  color: var(--color-text) !important;
+}
+
+/* Option sélectionnée */
+.form-field .react-select__option--is-selected {
+  background-color: var(--color-primary) !important;
+  color: #fff !important;
+}
+
+/* Couleur du placeholder */
+.form-field .react-select__placeholder {
+  color: #8d8b8b;
+}
+
+/* Pas de contour bleu au focus par defaut de react Select */
+.form-field .react-select__control:focus-visible {
+  outline: none;
+}
+
+/* Suppression du bleu par défaut de react Select du bord quand focus */
+.form-field .react-select__control--is-focused.react-select__control {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(147,173,24, 0.28) !important;
+}
+
+/* Placeholder & focus */
+.form-field .react-select__placeholder { color: #8d8b8b; }
+.form-field .react-select__control:focus-visible { outline: none; }
+.form-field .react-select__control--is-focused.react-select__control {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(147,173,24, 0.28) !important;
 }

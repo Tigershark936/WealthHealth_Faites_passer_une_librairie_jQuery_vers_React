@@ -1,6 +1,13 @@
 import { US_STATES_FULL } from "../data/states"
+import Select from "react-select";
 
 const AddressForm = ({ form = {}, errors = {}, onChange = () => {} }) => {
+  // transforme mon tableau en value pour React Select
+  const stateOptions = US_STATES_FULL.map((name) => ({
+    value: name,
+    label: name,
+  }));
+
   return (
     <fieldset className="address">
       <legend>Address</legend>
@@ -33,19 +40,22 @@ const AddressForm = ({ form = {}, errors = {}, onChange = () => {} }) => {
 
       {/* État US */}
       <div className="form-field">
-        <label htmlFor="state">State</label>
-        <select 
+        <label htmlFor="state">State</label>        
+        <Select 
           name="state" 
           id="state"
-          value={form.state}
-          onChange={onChange}
+          options={stateOptions}
+          value={stateOptions.find((opt) => opt.value === form.state)}
+          onChange={(selected) => 
+            onChange({
+              target: { name: "state", value: selected?.value || "" },
+            })
+          }
+          placeholder="Select State"
+          classNamePrefix="react-select"
+          isClearable
           required
-        >
-          <option> Select State </option>
-          {US_STATES_FULL.map((name) => (
-            <option key={name} value={name}>{name}</option>
-          ))}
-        </select>
+        />
         {errors.state && <div className="form-error">{errors.state}</div>}
       </div>
 

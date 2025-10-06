@@ -1,5 +1,6 @@
 import AddressForm from "./AddressForm.jsx"
 import DateInputs from "./DateInputs.jsx";
+import Select from "react-select";
 
 const DEPARTMENTS = [
   "Sales",
@@ -10,6 +11,12 @@ const DEPARTMENTS = [
 ];
 
 const EmployeeForm = ({ form = {}, errors = {}, onChange = () => {}, onSubmit = () => {} }) => {
+
+  const departmentOptions = DEPARTMENTS.map((d) => ({
+    value: d,
+    label: d
+  }));
+
   return (
     <form className="form-grid" id="create-employee" onSubmit={onSubmit} noValidate>
 
@@ -57,18 +64,24 @@ const EmployeeForm = ({ form = {}, errors = {}, onChange = () => {}, onSubmit = 
 
       {/* Department */}
       <div className="form-field">
-        <label htmlFor="department">Department</label>
-        <select 
+        <label htmlFor="department">Department</label>     
+        <Select
           name="department" 
-          id="department" 
-          value={form.department}
-          onChange={onChange} 
+          id="department"
+          options={departmentOptions}
+          value={departmentOptions.find((opt) => opt.value === form.department) || null}
+          onChange={(selected) => 
+            onChange({
+              target: {name: "department", value: selected?.value || "" },
+            })
+          }
+          placeholder="Select Department"
+          classNamePrefix="react-select"
+          isClearable
+          menuPlacement="auto"
           required
-        >
-          {DEPARTMENTS.map((d) => (
-            <option key={d} value={d}>{d}</option>
-          ))}
-        </select>
+        />
+        {errors.department && <div className="form-error">{errors.department}</div>}
       </div>
 
       {/* Button Formulary */}
