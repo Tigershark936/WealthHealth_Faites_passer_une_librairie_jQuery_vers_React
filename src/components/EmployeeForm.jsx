@@ -1,4 +1,5 @@
 import AddressForm from "./AddressForm.jsx"
+import DateInputs from "./DateInputs.jsx";
 
 const DEPARTMENTS = [
   "Sales",
@@ -40,34 +41,14 @@ const EmployeeForm = ({ form = {}, errors = {}, onChange = () => {}, onSubmit = 
         {errors.lastName && <div className="form-error">{errors.lastName}</div>}
       </div>
 
-      {/* Dates Of Birth */}
-      <div className="form-field">
-        <label htmlFor="date-of-birth">Date of Birth</label>
-        <input
-          type="date"
-          id="date-of-birth"
-          name="dateOfBirth"
-          value={form.dateOfBirth} 
-          onChange={onChange} 
-          required
-        />
-        {errors.dateOfBirth && <div className="form-error">{errors.dateOfBirth}</div>}
-      </div>
+      {/* Dates regroupées "Date of birth" & "Start Date" */}
+      <DateInputs 
+        form={form} 
+        errors={errors} 
+        onChange={onChange} 
+      />
 
-      {/* Start Date */}
-      <div className="form-field">
-        <label htmlFor="start-date">Start Date</label>
-        <input 
-          type="date"
-          id="start-date"
-          name="startDate"
-          value={form.startDate}
-          onChange={onChange}
-          required 
-        />
-        {errors.startDate && <div className="form-error">{errors.startDate}</div>}
-      </div>
-
+      {/* Address information */}
       <AddressForm
         form={form}
         errors={errors}

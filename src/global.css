@@ -9,16 +9,21 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial, "Noto Sans"; color: var(--color-text); background: var(--color-bg); }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial, "Noto Sans";
+  color: var(--color-text);
+  background: var(--color-bg);
+}
 
-/* ================== PANNEAU DU FORMULARY + FORMYLARY CARD " ================== */
+/* ================== PANNEAU DU FORMULARY + FORMYLARY CARD ================== */
 .auth-layout {
   max-width: 1100px;
   margin: 48px auto;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 18px 40px rgba(0,0,0,.12);
-  display: flex;                       /* 2 colonnes : panneau / formulaire */
+  display: flex;
   border: 1px solid var(--color-border);
 }
 
@@ -146,10 +151,16 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
   font-size: 14px;
   background: #fff;
   transition: border-color .2s, box-shadow .2s;
+  color: var(--color-text);
+  height: 38px;
+  line-height: 1.4;
+  box-sizing: border-box;
 }
 
+/* Focus aux inputs, selects et datepicker */
 .form-field input:focus,
-.form-field select:focus {
+.form-field select:focus,
+.form-field .react-datepicker__input-container input:focus {
   border-color: var(--color-primary);
   outline: none;
   box-shadow: 0 0 0 3px rgba(147,173,24,.28);
@@ -319,3 +330,98 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
   to   { transform: translateY(0);  opacity: 1; }
 }
 
+/* ====== REACT DATEPICKER ====== DateInputs.jsx ===== */
+
+/* datepicker */
+.form-field .react-datepicker-wrapper {
+  width: 100%;
+}
+
+.form-field .react-datepicker__input-container {
+  position: relative;
+}
+
+/* Input du datepicker */
+.form-field .react-datepicker__input-container input {
+  width: 100%;
+  padding: 10px 11px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  font-size: 14px;
+  background: #fff;
+  transition: border-color .2s, box-shadow .2s;
+  color: var(--color-text);
+  height: 38px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+/* l'icône calendrier (showIcon) */
+.form-field .react-datepicker__input-container.react-datepicker__view-calendar-icon input {
+  padding-right: 42px;
+}
+
+/* Icône calendrier par défaut */
+.form-field .react-datepicker__calendar-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--color-secondary);
+  opacity: .9;
+  pointer-events: auto;
+}
+
+/* survole de l’icône de l'input */
+.form-field .react-datepicker__calendar-icon:hover {
+  opacity: 0.6;
+}
+
+/* Popup calendrier au clic */
+.react-datepicker {
+  border: 1px solid var(--color-border);
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  font-family: inherit;
+  background: #fff;
+}
+
+/* Le haut du calendrier */
+.react-datepicker__header {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Le texte du mois en cours, de l’année ou l’heure */
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+/* un Date sélectionné */
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background: var(--color-primary) !important;
+  color: #fff !important;
+}
+
+/* survole du jour dans le calendrier */
+.react-datepicker__day:hover {
+  background: rgba(147,173,24,.15);
+}
+
+/* Le Date-j */
+.react-datepicker__day--today {
+  border: 1px solid var(--color-secondary);
+}
+
+/* le calendrier au-dessus de tout */
+.react-datepicker-popper {
+  z-index: 2000;
+}
