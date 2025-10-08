@@ -212,33 +212,171 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
+/* Titre "Current Employees" */
 #employee-div h3 {
   font-size: 24px;
   margin-bottom: 20px;
   color: var(--color-secondary);
 }
 
+/*  ================== TABLEAU ================== */
 #employee-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  table-layout: fixed;
+  min-height: calc(var(--thead-height) + (var(--rows-per-page) * var(--row-height)));
 }
 
-#employee-table th,
-#employee-table td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid var(--color-border);
-}
-
+/* Header du tableau  */
 #employee-table th {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-bg);
   font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.3;
 }
 
-#employee-table tr:hover { background: #f9f9f9; }
+/* EmployeeRow + Cursor flèche */
+#employee-table th .th-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+}
+#employee-table th .th-label {
+  overflow: visible;
+  white-space: nowrap;
+  text-overflow: unset;
+}
+#employee-table th .th-arrow {
+  flex: 0 0 auto;
+  font-size: 10px;
+  color: var(--color-bg);
+  opacity: 0.9;
+}
 
+/* Cellule du tableau */
+#employee-table td {
+  padding: 10px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.4;
+  height: var(--row-height);
+}
+
+#employee-table tr:hover { 
+  background: #f9f9f9; 
+}
+
+/* ====== (Show ... entries / Search) ====== */
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 15px;
+}
+
+.table-show-entries select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  font-size: 14px;
+}
+
+.table-search input[type="search"] {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.table-search input[type="search"]:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(147,173,24,.28);
+  outline: none;
+}
+
+/* ====== Footer (infos entries + nbre de page) ====== */
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  font-size: 14px;
+  color: #333;
+}
+
+.table-pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-pagination button {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.table-pagination button:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.table-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.table-pagination .current-page {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.table-pagination .dots {
+  padding: 0 6px;
+  color: #777;
+  font-weight: 600;
+  user-select: none;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 900px) {
+  #employee-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  #employee-table::-webkit-scrollbar { height: 8px; }
+  #employee-table::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 6px;
+  }
+}
+
+/*  ================== LIEN HOME ================== */
 #employee-div a {
   display: inline-block;
   margin-top: 20px;
