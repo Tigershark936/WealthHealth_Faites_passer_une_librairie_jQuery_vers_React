@@ -109,6 +109,12 @@ const EmployeeList = () => {
   }
   const visiblePages = Array.from({ length: endPage - startPage }, (_, i) => startPage + i)
 
+  // Options du select pour "Show X entries"
+  const pageSizeOptions = [5, 10, 25, 50, 100].map((n) => ({
+    value: n,
+    label: n.toString(),
+  }))
+
   return (
     <div id="employee-div" className="container">
       {/* Title Page */}
@@ -123,20 +129,17 @@ const EmployeeList = () => {
             <div className="table-show-entries">
               <label>
                 Show{" "}
-                <select
-                  value={pageSize}
+                <Select
+                  className="rs-compact"
                   classNamePrefix="react-select"
-                  onChange={(e) => {
-                    setPageSize(Number(e.target.value))
-                    setPage(0)
+                  value={pageSizeOptions.find(opt => opt.value === pageSize)}
+                  onChange={(opt) => {
+                    setPageSize(opt.value);
+                    setPage(0);
                   }}
-                >
-                  {[5, 10, 25, 50, 100].map((n) => (
-                    <option key={n} value={n}>
-                      {n}
-                    </option>
-                  ))}
-                </select>{" "}
+                  options={pageSizeOptions}
+                  isSearchable={false}
+                />{" "}
                 Entries
               </label>
             </div>

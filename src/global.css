@@ -311,6 +311,85 @@ body {
   outline: none;
 }
 
+/* ================== REACT SELECT ====== (version pour mon tableau) ====== */
+.rs-compact .react-select__control {
+  min-height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  box-shadow: none;
+}
+
+/* Alignenement Select et le texte "Show X Entries" sur la même ligne */
+.table-show-entries label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+/* Évite que le select descende quand il est compact */
+.table-show-entries .rs-compact {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.rs-compact .react-select__control:hover {
+  border-color: var(--color-primary-600);
+}
+
+.rs-compact .react-select__control--is-focused {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(147,173,24, .28) !important;
+}
+
+.rs-compact .react-select__control:focus-visible {
+  outline: none;
+}
+
+/* container et valeur du Select du tableau */
+.rs-compact .react-select__value-container { padding: 2px 6px; }
+.rs-compact .react-select__indicator        { padding: 2px; }
+.rs-compact .react-select__indicator-separator { display: none; }
+
+.rs-compact .react-select__single-value,
+.rs-compact .react-select__placeholder { font-size: 12px; }
+
+/* Pop-up du Show X Entries */
+.rs-compact .react-select__menu {
+  border: 1px solid var(--color-secondary);
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px rgba(147,173,24, .28);
+  background: #fff;
+  font-size: 12px;
+  overflow: hidden;
+  z-index: 2000;
+}
+
+/* Liste avec scroll */
+.rs-compact .react-select__menu-list {
+  max-height: 230px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) #f0f0f0;
+}
+.rs-compact .react-select__menu-list::-webkit-scrollbar { width: 6px; }
+.rs-compact .react-select__menu-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 6px;
+}
+.rs-compact .react-select__menu-list::-webkit-scrollbar-track { background: #f0f0f0; }
+
+.rs-compact .react-select__option--is-focused {
+  background-color: rgba(147,173,24, .15) !important;
+  color: var(--color-text) !important;
+}
+.rs-compact .react-select__option--is-selected {
+  background-color: var(--color-primary) !important;
+  color: #fff !important;
+}
+
 /* ====== Footer (infos entries + nbre de page) ====== */
 .table-footer {
   display: flex;
